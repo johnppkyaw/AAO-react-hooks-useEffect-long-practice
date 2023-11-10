@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Message from "./components/Message";
 import PictureDisplay from "./components/PictureDisplay";
 
@@ -11,6 +11,19 @@ function App() {
   const [isBrown, setIsBrown] = useState(false);
   const [isLightBrown, setIsLightBrown] = useState(false);
   const [isYellow, setIsYellow] = useState(false);
+
+  useEffect(() => {
+
+    const colorArr = [];
+    if(isRed) colorArr.push('red');
+    if(isOrange) colorArr.push('orange');
+    if(isBrown) colorArr.push('brown');
+    if(isLightBrown) colorArr.push('light-brown');
+    if(isYellow) colorArr.push('yellow');
+    setFeatherColors(preArr => colorArr);
+
+  }, [isRed, isOrange, isBrown, isLightBrown, isYellow])
+
 
   return (
     <>
