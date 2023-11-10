@@ -1,29 +1,8 @@
 import { useState, useEffect } from 'react';
 
-function Message({ size, featherCount }) {
+function Message({ sizeClass, featherCount }) {
 
-  const[messageSize, setMessageSize] = useState('');
   const[message, setMessage] = useState('');
-
-  useEffect(() => {
-    let sizename = '';
-
-    switch (size) {
-      case 'm':
-        sizename = 'medium';
-        break;
-      case 'l':
-        sizename = 'large';
-        break;
-      case 'xl':
-        sizename = 'xlarge';
-        break;
-      default:
-        sizename = 'small';
-    }
-    setMessageSize(sizename);
-
-  }, [size]);
 
   useEffect(() => {
     let theMessage = '';
@@ -42,7 +21,7 @@ function Message({ size, featherCount }) {
   },[featherCount])
 
   return (
-    <div className={`message ${messageSize}`}>
+    <div className={`message ${sizeClass}`}>
       {message}
     </div>
   );
