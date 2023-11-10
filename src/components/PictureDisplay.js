@@ -9,7 +9,7 @@ import feather7 from "../images/feather7.svg";
 import feather8 from "../images/feather8.svg";
 import feather9 from "../images/feather9.svg";
 import featherA from "../images/featherA.svg";
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const feathers = [
   feather1,
@@ -26,13 +26,29 @@ const feathers = [
 
 function PictureDisplay ({ size, featherCount, featherColors }) {
 
+  const [imgSize, setImgSize] = useState('');
+
   // TODO: Wrap in useEffect
   // useEffect(() => {
   //   console.log('PictureDisplay', size, featherCount, featherColors);
   // }, [size, featherCount, featherColors]);
 
   useEffect(() => {
-    console.log('PictureDisplay size', size);
+    let sizename = '';
+    switch (size) {
+      case 'm':
+        sizename = 'medium';
+        break;
+      case 'l':
+        sizename = 'large';
+        break;
+      case 'xl':
+        sizename = 'xlarge';
+        break;
+      default:
+        sizename = 'small';
+    }
+    setImgSize(sizename);
   }, [size]);
 
   useEffect(() => {
@@ -51,7 +67,7 @@ function PictureDisplay ({ size, featherCount, featherColors }) {
   }
 
   return (
-    <div className={`image-area medium`}>
+    <div className={`image-area ${imgSize}`}>
       {colors.map((c, i) =>
         <img
           key={feathers[i]}
